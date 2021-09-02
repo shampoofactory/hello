@@ -8,7 +8,7 @@ env:
   CARGO_TERM_COLOR: always
 jobs:
   build:
-    name: build + test
+    name: Build + test
     env:
       CARGO: cargo
       TARGET:
@@ -49,21 +49,23 @@ jobs:
           os: windows-latest
           rust: stable-x86_64-gnu
     steps:
-    - name: checkout
+    - name: Checkout repo
       uses: actions/checkout@v2
-    - name: toolchain
+    - name: Install toolchain
       uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
         profile: minimal
         override: true
-    - name: cross
+    - name: Install cross
       if: matrix.target != ''
       run: |
         cargo install cross
         echo "CARGO=cross" >> $GITHUB_ENV
         echo "TARGET=--target ${{ matrix.target }}" >> $GITHUB_ENV
-    - name: build
+    - name: Cargo build
       run: ${{ env.CARGO }} build --verbose ${{ env.TARGET }}
-    - name: test
+    - name: Cargo doc
+      run: ${{ env.CARGO }} doc --verbose ${{ env.TARGET }}
+    - name: Cargo test
       run: ${{ env.CARGO }} test --verbose ${{ env.TARGET }}
