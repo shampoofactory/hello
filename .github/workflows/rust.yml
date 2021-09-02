@@ -8,7 +8,7 @@ env:
   CARGO_TERM_COLOR: always
 jobs:
   build:
-    name: build
+    name: build test
     env:
       CARGO: cargo
       TARGET:
@@ -32,7 +32,7 @@ jobs:
           os: ubuntu-latest
           rust: stable
         - build: ubuntu-32
-          os: ubuntu_latest
+          os: ubuntu-latest
           rust: stable
           target: i686-unknown-linux-gnu
         - build: mips
@@ -63,11 +63,7 @@ jobs:
         cargo install cross
         echo "CARGO=cross" >> $GITHUB_ENV
         echo "TARGET=--target ${{ matrix.target }}" >> $GITHUB_ENV
-    - name: command
-      run: |
-        echo "cargo command is: ${{ env.CARGO }}"
-        echo "target flag is: ${{ env.TARGET }}"
     - name: build
       run: ${{ env.CARGO }} build --verbose ${{ env.TARGET }}
-    - name: Run tests
+    - name: test
       run: ${{ env.CARGO }} test --verbose ${{ env.TARGET }}
