@@ -19,7 +19,6 @@ jobs:
         - arm
         - ubuntu
         - ubuntu-32
-        - mips
         - macos
         - win-msvc
         - win-gnu
