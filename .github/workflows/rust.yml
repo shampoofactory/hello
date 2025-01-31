@@ -38,7 +38,7 @@ jobs:
         - build: mips
           os: ubuntu-latest
           rust: stable
-          target: mips64-unknown-linux-gnuabi64
+          target: mips64-unknown-linux-muslabi64
         - build: macos
           os: macos-latest
           rust: stable
