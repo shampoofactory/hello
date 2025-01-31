@@ -35,10 +35,6 @@ jobs:
           os: ubuntu-latest
           rust: stable
           target: i686-unknown-linux-gnu
-        - build: mips
-          os: ubuntu-latest
-          rust: stable
-          target: mips64-unknown-linux-muslabi64
         - build: macos
           os: macos-latest
           rust: stable
